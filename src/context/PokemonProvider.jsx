@@ -68,12 +68,16 @@ export const PokemonProvider = ({children}) => {
 
     useEffect(() => {
       getAllPokemons()
-    }, [])
+    }, [offset])
     
     useEffect(() => {
       getGlobalPokemons()
     }, [])
     
+    //botón cargar mas
+    const onClickLoadMore = () => {
+        setoffset(offset + 50)
+    }
 
     return (
     <PokemonContext.Provider value={{
@@ -82,7 +86,12 @@ export const PokemonProvider = ({children}) => {
         onResetFomr,
         allPokemons,
         globalPokemons,
-        getPokemonByID
+        getPokemonByID,
+        onClickLoadMore,
+        loading,
+        setLoading,
+        active,
+        setActive
     }}>
         {children}
     </PokemonContext.Provider>
